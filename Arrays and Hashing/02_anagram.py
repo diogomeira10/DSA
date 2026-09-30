@@ -146,41 +146,44 @@ Output: false """
             
 #         return word_s == word_t
             
+# class Solution:
+#     def isAnagram(self, s: str, t: str) -> bool:
+        
+#         if(len(s) != len(t)): 
+#             return False
+        
+#         # contar as occurencias de cada letra em cada palavra
+        
+#         word_s = dict()
+#         word_t = dict()        
+        
+#         for i in range(len(s)):
+#             word_s[s[i]] = 1 + word_s.get(s[i], 0)
+#             word_t[t[i]] = 1 + word_t.get(t[i], 0)
+        
+        
+            
+#         print(word_s)
+#         print(word_t)
+            
+#         return word_s == word_t
+    
+    
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         
-        if(len(s) != len(t)): 
+        if len(s) != len(t):
             return False
         
-        # contar as occurencias de cada letra em cada palavra
-        
-        word_s = dict()
-        word_t = dict()        
+        s_app = {}
+        t_app = {}
         
         for i in range(len(s)):
-            word_s[s[i]] = 1 + word_s.get(s[i], 0)
-            word_t[t[i]] = 1 + word_t.get(t[i], 0)
+            s_app[s[i]] = 1 + s_app.get(s[i],0) 
+            t_app[t[i]] = 1 + t_app.get(t[i],0) 
         
-        
-            
-        print(word_s)
-        print(word_t)
-            
-        return word_s == word_t
-    
-# Exercise => Determine Time and Space Complexity
-
-# TC - How the number of operations increase as input increases.
-# SC - How the space increases as input increases  
-
-# TC - 
-# SC - O(1)
-          
-
-        
-        
-        
-        
+        return s_app == t_app
+                
 solution_1 = Solution()      
 print(solution_1.isAnagram(s = "anagram", t = "nagaram"))
 print(solution_1.isAnagram(s = "rat", t = "car"))
