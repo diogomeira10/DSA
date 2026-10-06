@@ -75,7 +75,41 @@ class Solution:
 instance = Solution()
 
 
+
+# class Solution:
+#     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        
+#         anagrams = dict()
+        
+#         for string in strs:
+#             sorted_str = "".join(sorted(string))
+#             if sorted_str in anagrams:
+#                 anagrams[sorted_str].append(string)
+#             else:
+#                 anagrams[sorted_str] = [string]
+#         list = [value for value in anagrams.values()]
+        
+#         return list
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        
+        anagrams = defaultdict(list)
+        
+        for string in strs:
+            ccs = [0] * 26
+            for c in string:
+                ccs[ord(c) - ord('a')] += 1
+            
+            anagrams[tuple(ccs)].append(string)                
+        
+        
+        return list(anagrams.values())
+
+
+            
+    
+instance = Solution()
 print(instance.groupAnagrams(["act","pots","tops","cat","stop","hat"]))
 output = [["hat"],["act", "cat"],["stop", "pots", "tops"]]
-[['hat'], ['act', 'cat'], ['pots', 'tops', 'stop']]
 
