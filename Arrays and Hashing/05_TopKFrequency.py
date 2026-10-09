@@ -95,7 +95,7 @@
 """
 
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
         # Build a frequency map that counts how many times each number appears.
         count = {}
         for num in nums:
@@ -118,6 +118,32 @@ class Solution:
 
         
         
+class Solution:
+    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
+        
+        counts = {}
+        freqs = [[] for i in range(len(nums) + 1)]
+        
+        for num in nums:
+            counts[num] = counts.get(num, 0) + 1
+        print(f"counts: {counts}")
+        
+        for num, count in counts.items():
+            freqs[count].append(num)
+            
+        output = []
+        
+        for i in range(len(freqs) - 1, 0, -1):
+            for j in freqs[i]:
+                output.append(j)
+                if len(output) == k:
+                    return output
+                
+                
+
+        
     
 instance = Solution()
+
+
 print(instance.topKFrequent(nums=[1,1,1,2,2,2,3,3,3], k=2))
