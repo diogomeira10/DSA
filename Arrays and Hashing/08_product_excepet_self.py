@@ -60,14 +60,41 @@ class Solution:
     def productExceptSelf(self, nums: list[int]) -> list[int]:
 
         product = 1
+        zero_count = 0
+
+        for num in nums:
+            if num != 0:
+                product *= num
+            else:
+                zero_count += 1
+        
+        if zero_count > 1:
+            
+
+        products = []
+        
+        if zero_count:
+            for num in nums:
+                products.append(0) if num else products.append(product)
+        else:
+            for num in nums:
+                products.append(product // num)
+
+        return products
+   
+#Prefix Sufix Solution 
+class Solution:
+    def productExceptSelf(self, nums: list[int]) -> list[int]:
+
+        product = 1
         has_zero = False
 
         for num in nums:
             if num != 0:
                 product *= num
-
             else:
                 has_zero = True
+        print(product)
 
         products = []
         
@@ -84,5 +111,6 @@ class Solution:
 instance = Solution()
 
 
-print(instance.productExceptSelf([1,2,4,6]))
-print(instance.productExceptSelf([-1, 0, 1, 2, 3]))
+# print(instance.productExceptSelf([1,2,4,6]))
+# print(instance.productExceptSelf([-1, 0, 1, 2, 3]))
+print(instance.productExceptSelf([0,0]))
