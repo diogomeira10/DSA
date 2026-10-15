@@ -55,62 +55,83 @@ from typing import List
 #         return products
 
 
-# instance = Solution()
-class Solution:
-    def productExceptSelf(self, nums: list[int]) -> list[int]:
+# # instance = Solution()
+# class Solution:
+#     def productExceptSelf(self, nums: list[int]) -> list[int]:
 
-        product = 1
-        zero_count = 0
+#         product = 1
+#         zero_count = 0
 
-        for num in nums:
-            if num != 0:
-                product *= num
-            else:
-                zero_count += 1
+#         for num in nums:
+#             if num != 0:
+#                 product *= num
+#             else:
+#                 zero_count += 1
         
-        if zero_count > 1:
-            
+#         if zero_count > 1:
+#             return [0] * len(nums)
 
-        products = []
+#         products = []
         
-        if zero_count:
-            for num in nums:
-                products.append(0) if num else products.append(product)
-        else:
-            for num in nums:
-                products.append(product // num)
+#         if zero_count:
+#             for num in nums:
+#                 products.append(0) if num else products.append(product)
+#         else:
+#             for num in nums:
+#                 products.append(product // num)
 
-        return products
+#         return products
    
 #Prefix Sufix Solution 
 class Solution:
     def productExceptSelf(self, nums: list[int]) -> list[int]:
+        res = [1] * (len(nums))
 
-        product = 1
-        has_zero = False
-
-        for num in nums:
-            if num != 0:
-                product *= num
-            else:
-                has_zero = True
-        print(product)
-
-        products = []
+        prefix = 1
+        for i in range(len(nums)):
+            res[i] = prefix                                                                                                                            
+            prefix *= nums[i]
+        print("first res: ",res)
         
-        if has_zero:
-            for num in nums:
-                products.append(0) if num else products.append(product)
-        else:
-            for num in nums:
-                products.append(product // num)
-
-        return products
+        
+        postfix = 1
+        for i in range(len(nums) - 1, -1, -1):
+            res[i] *= postfix
+            postfix *= nums[i]
+            print("ITERATION")
+            print("res[i]:",res[i])
+            print("postfix: ", postfix)
+            print(res)
+        return res
 
 
 instance = Solution()
 
 
 # print(instance.productExceptSelf([1,2,4,6]))
+print(instance.productExceptSelf([1,2,3,4]))
 # print(instance.productExceptSelf([-1, 0, 1, 2, 3]))
-print(instance.productExceptSelf([0,0]))
+# print(instance.productExceptSelf([0,0]))
+
+
+class S:
+    def prefixSum(self, nums: list[int]) -> list[int]:
+        res = [1] * (len(nums))
+        
+        prefix = 0
+        for i in range(len(nums)):
+            res[i] = prefix
+            prefix += nums[i]
+            print(nums[i])
+            print(prefix)
+        
+
+
+        
+        return res
+
+
+instance = S()
+print("here")
+print(instance.prefixSum([1,2,3,4]))
+
